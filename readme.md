@@ -1,0 +1,2 @@
+# Repository for Sgioma class ❤️
+

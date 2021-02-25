@@ -1,0 +1,353 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sup dude!</title>
+	<link rel="shortcut icon" href="https://data.whicdn.com/images/220555186/original.gif" type="image/x-icon">  
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+
+      #espacio1{
+
+        display:flex;
+        flex-direction: column-reverse;
+
+      }
+	  body {
+		background-color: black;
+		background-image: url("https://data.whicdn.com/images/290733198/original.gif");
+		
+		}
+	  .module {
+		width: 100%;
+		background-color: #ECE9D8;
+		text-align: center;
+		padding-top: 10%;
+		padding-bottom: 10%;
+		color: black;
+	  }
+	  .window {
+		  background-color: #0055E6;
+		  padding-top: 1%;
+		  padding-bottom: 1%;
+		  padding-left: 1%;
+		  
+		  margin-left: 10%;
+		  padding-right: 1%;
+		  margin-right: 10%;
+		  margin-top: 10%;
+		  border-radius: 5px;
+		  color: white;
+	  }
+	  .module button{
+		  cursor: pointer;
+	  }
+    </style>
+
+  </head>
+  	<body>
+		  <h1 style="color:black;">
+			  Hello sgioma!!!
+		  </h1>
+		  
+		  <div class="window">
+			<p>Actividad 1</p>
+			<div class="module">
+				<img style="width:100px;" src="https://weloveit.africa/wp-content/uploads/2018/08/8bit-PC-logo.gif"/>
+				<p>click to bring or change some data <br>Go and change it bro!</p>
+				<button onclick="reto()" >
+					POST
+				</button>
+				<button onclick="retob()" >
+					GET
+				</button>
+				<p id="act1"></p>
+			</div>
+		</div>
+		<div class="window">
+			<p>Actividad 2</p>
+		<div class="module">
+			<img style="width:100px;" src="https://i.pinimg.com/originals/91/68/63/916863c919165c049a254acdf2e4753e.gif"/>
+			<p>Go and get a json</p>
+			<button onclick="reto2()" >
+				GET
+			  </button>
+			  <button onclick="cleared()">
+				  CLEAR
+			  </button>
+			  <p id="act2"></p>
+		</div>
+		</div>
+		<div class="window">
+			<p>Actividad 3</p>
+			<div class="module">
+				<img style="width:200px;" src="https://miro.medium.com/max/534/0*_pWYv_PSM3zqE3dV.gif"/>
+				<p>
+					Add new register to get an alert update!
+					<hr>
+
+					Add a new album!
+				</p>
+				<button onclick="reto3()">
+					ADD ALBUM DATA
+				  </button>
+				  <p id="act3">
+				  </p>
+				  <div id="newData">
+
+				  </div>
+			</div>
+		</div>
+        <!-- <div class="window">
+        
+			
+		</div>
+		</div>
+		 -->
+          
+
+
+    	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+		  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+		  <script type="text/javascript">
+			let dataNum = 0;
+		  	let xmlhttp;
+
+			  
+
+      	function mostrar()
+      		{
+
+            
+
+        	if (window.XMLHttpRequest)
+          		{
+            		xmlhttp=new XMLHttpRequest();
+          		}
+        	else
+          		{
+          		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          		}
+
+
+
+        	xmlhttp.onreadystatechange=function()
+          		{
+          
+          		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            		{
+            		document.getElementById("lugardetrabajo").innerHTML=xmlhttp.responseText;
+                console.log(xmlhttp.responseText);
+                //JSON.parse(xmlhttp.responseText)
+
+            		}
+          		}
+
+              var cadena="/dato"
+          	  xmlhttp.open("POST",cadena,true);
+               //xmlhttp.open("GET","/dato",true);
+              xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xmlhttp.send("y=3");
+          	   //xmlhttp.send();
+      		}
+
+			function cleared(){
+				  console.log("cleared")
+				  document.getElementById("act2").innerHTML="";
+				  dataNum=0;
+			  }
+
+          function reto(){
+            if (window.XMLHttpRequest)
+          		{
+            		xmlhttp=new XMLHttpRequest();
+          		}
+        	else
+          		{
+          		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          		}
+
+
+
+        	xmlhttp.onreadystatechange=function()
+          		{
+          
+          		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            		{
+
+            		document.getElementById("act1").innerHTML="Changed with POST!";
+                	console.log(xmlhttp.responseText);
+                //JSON.parse(xmlhttp.responseText)
+
+            		}
+          		}
+
+              var cadena="/reto"
+          	  xmlhttp.open("POST",cadena,true);
+               //xmlhttp.open("GET","/dato",true);
+              xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xmlhttp.send("index=2&n=estoEsLaNueva");
+          	   //xmlhttp.send();
+
+          }
+
+		  function retob(){
+            if (window.XMLHttpRequest)
+          		{
+            		xmlhttp=new XMLHttpRequest();
+          		}
+        	else
+          		{
+          		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          		}
+
+
+
+        	xmlhttp.onreadystatechange=function()
+          		{
+          
+          		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            		{
+						let json = JSON.parse(xmlhttp.responseText)
+            		document.getElementById("act1").innerHTML="With GET you bring: "+json;
+                	console.log(xmlhttp.responseText);
+                //JSON.parse(xmlhttp.responseText)
+
+            		}
+          		}
+
+              var cadena="/reto"
+          	  xmlhttp.open("GET",cadena,true);
+               //xmlhttp.open("GET","/dato",true);
+              xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xmlhttp.send("index=2&n=estoEsLaNueva");
+          	   //xmlhttp.send();
+
+          }
+
+          function reto2(){
+            if (window.XMLHttpRequest)
+          		{
+            		xmlhttp=new XMLHttpRequest();
+          		}
+        	else
+          		{
+          		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          		}
+
+
+
+        	xmlhttp.onreadystatechange=function()
+          		{
+          
+          		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            		{
+                		
+						let json = JSON.parse(xmlhttp.responseText)
+						dataNum = json.length;
+						let info = ""
+						for( n in json){
+							info+="<hr><li>Título: "+json[n].Titulo+" </li><li>Artista: "+json[n].Artista+"</li><li>Año: "+json[n].Año+"</li>";
+							console.log(json[n].Titulo)
+						}
+						document.getElementById("act2").innerHTML="With GET you bring the json: <br>"+info;
+						console.log(json);
+            		}
+          		}
+
+              var cadena="/reto2"
+          	  xmlhttp.open("GET",cadena,true);xmlhttp.send();
+          	  
+
+          }
+		  
+		  
+		  function reto3(){
+            if (window.XMLHttpRequest)
+          		{
+            		xmlhttp=new XMLHttpRequest();
+          		}
+        	else
+          		{
+          		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          		}
+
+
+
+        	xmlhttp.onreadystatechange=function()
+          		{
+          
+          		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            		{
+
+					let json = JSON.parse(xmlhttp.responseText);
+					let newData = (parseInt(json)-dataNum);
+					let newButton = "<br><p>Bring all data (optimized):</p>"
+					let btn = document.createElement("BUTTON");
+					btn.innerHTML="GET (OPTIMIZED)";
+					btn.onclick=function(){reto3b()};
+            		document.getElementById("act3").innerHTML="New Data Added!! <br> New Albums added (not updated): "+ newData +newButton;
+					document.getElementById("act3").appendChild(btn);
+                	console.log(json[0]);
+               
+
+            		}
+          		}
+
+              var cadena="/reto3"
+          	  xmlhttp.open("POST",cadena,true);
+               //xmlhttp.open("GET","/dato",true);
+              xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xmlhttp.send("Titulo=Awaken, My Love!&Artista=Childish Gambino&Año=2016");
+          	   //xmlhttp.send();
+
+          }
+		  function reto3b(){
+			  if (window.XMLHttpRequest)
+          		{
+            		xmlhttp=new XMLHttpRequest();
+          		}
+        	else
+          		{
+          		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+          		}
+
+
+
+        	xmlhttp.onreadystatechange=function()
+          		{
+          
+          		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            		{
+
+					let json = JSON.parse(xmlhttp.responseText);
+					console.log(json)
+					
+					let info = "<p>New data:</p><br>"
+
+					for( n in json){
+							info+="<hr><li>Título: "+json[n].Titulo+" </li><li>Artista: "+json[n].Artista+"</li><li>Año: "+json[n].Año+"</li>";
+							console.log(json[n].Titulo)
+						}
+						document.getElementById("newData").innerHTML=info;
+            		}
+          		}
+
+              var cadena="/reto3b"
+          	  xmlhttp.open("POST",cadena,true);
+				xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xmlhttp.send("num="+(dataNum.toString()));
+			  console.log("num="+(dataNum.toString()))
+          	   
+		  }
+		  
+          
+
+      		
+
+          
+              </script>
+	</body>
+</html>
