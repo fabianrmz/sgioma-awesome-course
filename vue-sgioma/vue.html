@@ -1,0 +1,201 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Semestre i</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   
+    <style>
+        body{
+            background-image: url("https://64.media.tumblr.com/f2141838099fd49bf61ba2d634117d54/tumblr_nejljkhktj1r8uffzo1_500.gif");
+            color: white;
+
+        }
+
+        .book {
+            background-color: grey;
+            border-radius: 5px;
+            margin: 2%;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            text-align: center;
+            position:relative;
+            width: 29%;
+            float: left;
+            
+        }   
+        .black {
+            font-weight: bold;
+        }
+        
+        .shelf{
+            width: 100%;
+            
+        }
+        
+        .inputs{
+            margin-top: 1%;
+            margin-bottom: 1%;
+            width: 50%;
+            float: left;
+        }
+        .inputsHere{
+            width: 100%;
+
+        }
+        @media only screen and (max-width: 500px) {
+            .book {
+                width: 96%;
+            }
+            .inputs{
+                width: 100%;
+                float: left;
+                margin-top: 1%;
+                margin-bottom: 1%;
+            }
+        }
+
+    </style>
+
+  </head>
+  	<body>
+        <div id="lugardetrabajo">
+            <h1>Libros: </h1>
+            <div class="inputsHere">
+                <div class="inputs">
+                    <span>Autor</span>
+                    <input type="text" v-model="author"/>
+                </div>
+                <div class="inputs">
+                    <span>Titulo</span>
+                    <input type="text" v-model="title"/>
+                </div>
+                <div class="inputs">
+                    <span>Cantidad</span>
+                    <input  type="text" v-model="quantity"/>
+                </div>
+                <div class="inputs">
+                    <span>Editorial</span>
+                    <input type="text" v-model="editorial"/>
+                </div>
+            </div>
+            
+            
+            <button v-on:click=addBook>
+                Añadir dato
+            </button>
+            
+            <hr>
+            <div class="shelf">
+                <div class="book" v-for="book in libros">
+               
+                    <div >
+                        <div class="black">
+                         Author: 
+                        </div>
+                         {{ book.autor }}
+                    </div> 
+                    
+                    
+                     <div class="black">
+                         Book: 
+                        </div>
+                      {{ book.titulo }}
+
+                      <div >
+                        <div class="black">
+                         Editorial: 
+                        </div>
+                         {{ book.editorial }}
+                    </div> 
+                    <div >
+                        <div class="black">
+                         Cantidad: 
+                        </div>
+                         {{ book.quantity }}
+                    </div> 
+                    
+                    
+                    
+                      
+                    <div v-if="book.oferta" >
+                        🏷️ SALE 
+                    </div>
+     
+                
+                 </div>
+            </div>
+            
+             
+            
+        </div>
+
+        <div id="espacio">
+           
+        </div>
+        
+
+
+		  <script type="text/javascript">
+
+          //Una instancia de Vue que manejará esa área del documento #lugardetrabajo
+          c= new Vue({
+            el: "#lugardetrabajo",
+            data :{
+              nombre: "La elegante vagancia",
+              libros:[{
+                autor:"Ray Bradbury",
+                titulo:"Fahrenheit 451",
+                oferta: false,
+                quantity: 13,
+                editorial: "SM"
+              },
+              {
+                autor:"Arthur C. Clarke",
+                titulo:"El fin de la infancia",
+                oferta: true,
+                quantity: 1,
+                editorial: "SM"
+              },
+              {
+                titulo: "Does androids dream of electric sheeps?", 
+                autor: "Philip K Dick",
+                oferta: false,
+                quantity: 10,
+                editorial: "SM"
+            }],
+            editorial:"",
+            title: "",
+            author:"",
+            quantity:0,
+            
+            
+            },
+            methods: {
+                search:function() {
+                    console.log("search")
+                },
+                addBook:function(){
+                    if(this.author!="" && this.title!="" && this.editorial!="" && !(isNaN(this.quantity)) ){
+                        this.libros.push({
+                        autor: this.author,
+                        titulo: this.title,
+                        oferta: false,
+                        editorial: this.editorial,
+                        quantity: this.quantity,
+                    })
+                        this.quantity = 0;
+                        this.author = "";
+                        this.title = "";
+                        this.editorial = "";
+                    }else{
+                        window.alert("Ups, check your inputs bro")
+                    }
+                    
+                }
+            } 
+            
+          });
+
+		  </script>
+	</body>
+</html>
