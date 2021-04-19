@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Semestre i</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   
+    <style>
+
+    
+
+    </style>
+
+  </head>
+  	<body>
+        <div id="lugardetrabajo">
+            <h3>Random Star Wars GIF</h3>
+            <img width="250px" :src="gifs" />
+            <h3>Top categories</h3>
+            
+            <ul class="column" v-for="dato in datos">
+                <li class="title is-4"> {{ dato.name }}</li>
+
+            </ul>
+
+            <h3>Top songs</h3>
+
+            <ul class="column" v-for="song in songs">
+                <li class="title is-4"> {{ song.name }} </li>
+            </ul>
+          
+           
+            
+        </div>
+
+        
+        
+
+
+		  <script type="text/javascript">
+
+          //Una instancia de Vue que manejará esa área del documento #lugardetrabajo
+          c= new Vue({
+            el: "#lugardetrabajo",
+            data :{
+              nombre: "Spotify",
+              datos: [],
+              songs: [],
+              gifs: [],
+            },
+            created: function(){
+                console.log("instancia creada")
+                fetch("https://api.spotify.com/v1/browse/categories", {method:'GET', 
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer BQDa5lqapRo1ADZoblGZCy9L2EymUr___s5Q4SBO6fIPnNzDTr3aC3H1mgYVgCcSghDLjVOm8u52vV1OfwYlx47TVg4cAkzxj41UcYglaQxNwq4NCK8-KdX5mnP9e7Ts09R1rQCQOZ6ml-1sPj_-IQxmMxVtz4HjXQeKSq0WfQ'}
+    
+            }).then(response => response.json())
+                .then(data => {
+                    (this.datos = data.categories.items)
+                    
+                });
+
+
+                fetch("https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10&offset=5", {method:'GET', 
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer BQDa5lqapRo1ADZoblGZCy9L2EymUr___s5Q4SBO6fIPnNzDTr3aC3H1mgYVgCcSghDLjVOm8u52vV1OfwYlx47TVg4cAkzxj41UcYglaQxNwq4NCK8-KdX5mnP9e7Ts09R1rQCQOZ6ml-1sPj_-IQxmMxVtz4HjXQeKSq0WfQ'}
+    
+            }).then(response => response.json())
+                .then(data => {
+                    (this.songs = data.items)
+                    console.log(this.songs)
+                });
+
+
+                fetch("https://api.giphy.com/v1/gifs/random?api_key=lgwNPDcIOPWTHdyD3w1GWfqTtycUIbHk&tag=star wars", {method:'GET', 
+                headers: {
+                'Content-Type': 'application/json',}
+    
+            }).then(response => response.json())
+                .then(data => {
+                    (this.gifs = data.data.images.preview_gif.url)
+                    console.log(this.gifs)
+                });
+            
+
+            },
+
+            
+          });
+
+		  </script>
+	</body>
+</html>
